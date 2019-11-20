@@ -3,8 +3,15 @@ import { StyleSheet, Text, View, SafeAreaView, Platform } from 'react-native';
 import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import Login from './screens/login/Login';
-import Buy from './screens/main/Buy';
-import Sell from './screens/main/Sell';
+
+
+import HomeStack from './screens/main/Home';
+
+import Search from './screens/search/Search';
+import Profile from './screens/profile/Profile';
+import NewOrder from './screens/new_order/NewOrder';
+import Transaction from './screens/transaction/Transaction';
+
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 import Add from './screens/main/Add';
 
@@ -18,14 +25,56 @@ const LoginStack = createStackNavigator(
 	}
 )
 
-const MainStack = createMaterialTopTabNavigator(
+const SearchStack = createStackNavigator(
 	{
-		Buy: Buy,
-		Sell: Sell,
-		Add: Add
+		Search: Search
 	},
 	{
-		initialRouteName: 'Add',
+		// initialRouteName: 'Login',
+		headerMode: 'none'
+	}
+)
+
+const ProfileStack = createStackNavigator(
+	{
+		Profile: Profile
+	},
+	{
+		// initialRouteName: 'Login',
+		headerMode: 'none'
+	}
+)
+
+const NewOrderStack = createStackNavigator(
+	{
+		NewOrder: NewOrder
+	},
+	{
+		// initialRouteName: 'Login',
+		headerMode: 'none'
+	}
+)
+
+const TransactionStack = createStackNavigator(
+	{
+		Transaction: Transaction
+	},
+	{
+		// initialRouteName: 'Login',
+		headerMode: 'none'
+	}
+)
+
+const MainStack = createMaterialTopTabNavigator(
+	{
+		HomeStack: HomeStack,
+		SearchStack: SearchStack,
+		NewOrderStack: NewOrderStack,
+		TransactionStack: TransactionStack,
+		ProfileStack: ProfileStack,
+	},
+	{
+		// initialRouteName: 'Buy',
 		tabBarPosition: 'bottom',
 	}
 )
