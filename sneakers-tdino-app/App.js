@@ -3,10 +3,16 @@ import { StyleSheet, Text, View, SafeAreaView, Platform } from 'react-native';
 import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import Login from './screens/login/Login';
-import Buy from './screens/main/Buy';
-import Sell from './screens/main/Sell';
+
+
+import Home from './screens/main/Home';
+
+import Search from './screens/main/Search';
+import Profile from './screens/main/Profile';
+import NewOrder from './screens/main/NewOrder';
+import Transaction from './screens/main/Transaction';
+
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
-import Add from './screens/main/Add';
 
 const LoginStack = createStackNavigator(
 	{
@@ -18,15 +24,26 @@ const LoginStack = createStackNavigator(
 	}
 )
 
+
 const MainStack = createMaterialTopTabNavigator(
 	{
-		Buy: Buy,
-		Sell: Sell,
-		Add: Add
+		Home,
+		Search,
+		NewOrder,
+		Transaction,
+		Profile,
 	},
 	{
-		initialRouteName: 'Add',
 		tabBarPosition: 'bottom',
+		initialRouteName: 'NewOrder',
+		tabBarOptions: {
+			labelStyle: {
+				fontSize: 10,
+			},
+			style: {
+				backgroundColor: 'blue',
+			},
+		}
 	}
 )
 
