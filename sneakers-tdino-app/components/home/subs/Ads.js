@@ -57,7 +57,7 @@ export default class Ads extends React.Component {
                             height: 300,
                             resizeMode: 'contain',
                         }}
-                        source={{ uri: 'http://192.168.1.11:3000/' + item }}
+                        source={{ uri: item }}
                     />
                 )}
                 sliderWidth={deviceWidth}
