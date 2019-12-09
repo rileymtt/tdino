@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, FlatList, Dimensions } from 'react-native';
-import Ads from '../../components/Ads';
 
 export default class Buy extends React.Component {
     constructor(props) {
@@ -11,12 +10,12 @@ export default class Buy extends React.Component {
     }
 
     componentDidMount() {
-        fetch('http://192.168.1.16:3000/api/buy-ads')
-            .then(res => res.json())
-            .then(json => {
-                const { result } = json;
-                this.setState({ ads: result })
-            })
+        // fetch('http://192.168.1.16:3000/api/buy-ads')
+        //     .then(res => res.json())
+        //     .then(json => {
+        //         const { result } = json;
+        //         this.setState({ ads: result })
+        //     })
     }
 
     render() {
@@ -28,13 +27,13 @@ export default class Buy extends React.Component {
                     flex: 1
                 }}
             >
-                <Text>Buy</Text>
-                <FlatList
+                <Text>Swap</Text>
+                {/* <FlatList
                     data={ads}
                     renderItem={({ item }) => <Ads ads={item} />}
                     keyExtractor={item => item.id.toString()}
                     extraData={this.state}
-                />
+                /> */}
             </View>
         )
     }

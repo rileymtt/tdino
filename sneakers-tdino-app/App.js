@@ -4,16 +4,27 @@ import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import Login from './screens/login/Login';
 
+import Home from './screens/main/Home';
 
-import HomeStack from './screens/main/Home';
-
-import Search from './screens/search/Search';
-import Profile from './screens/profile/Profile';
-import NewOrder from './screens/new_order/NewOrder';
-import Transaction from './screens/transaction/Transaction';
+import Search from './screens/main/Search';
+import Profile from './screens/main/Profile';
+import NewOrder from './screens/main/NewOrder';
+import Transaction from './screens/main/Transaction';
 
 import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
-import Add from './screens/main/Add';
+
+import {
+	PlusFill,
+	PlusStroke,
+	SearchFill,
+	SearchStroke,
+	SneakerFill,
+	SneakerStroke,
+	TradeFill,
+	TradeStroke,
+	UserFill,
+	UserStroke,
+} from './components/svg'
 
 const LoginStack = createStackNavigator(
 	{
@@ -25,58 +36,155 @@ const LoginStack = createStackNavigator(
 	}
 )
 
-const SearchStack = createStackNavigator(
-	{
-		Search: Search
-	},
-	{
-		// initialRouteName: 'Login',
-		headerMode: 'none'
-	}
-)
 
-const ProfileStack = createStackNavigator(
-	{
-		Profile: Profile
+const MainStack = createMaterialTopTabNavigator({
+	Home: {
+		screen: Home,
+		navigationOptions: ({ navigation }) => ({
+			title: 'Home',
+			header: null,
+			tabBarIcon: ({ focused, tintcolor }) => {
+				return (
+					focused ? <View
+						style={{
+							borderRadius: 50,
+							borderWidth: 2,
+						}}
+					>
+						<SneakerFill
+							width={25}
+							height={25}
+							iconColor={tintcolor}
+							style_container={{ justifyContent: 'center' }}
+						/></View>
+						: <View
+							style={{
+								borderRadius: 50,
+								borderWidth: 1,
+							}}
+						>
+							<SneakerStroke
+								width={25}
+								height={25}
+								iconColor={tintcolor}
+								style_container={{ justifyContent: 'center' }}
+							/></View>
+				)
+			},
+		})
 	},
-	{
-		// initialRouteName: 'Login',
-		headerMode: 'none'
-	}
-)
+	Search: {
+		screen: Search,
+		navigationOptions: ({ navigation }) => ({
+			title: 'Search',
+			header: null,
+			tabBarIcon: ({ focused, tintcolor }) => {
+				return (
+					focused ? <SearchFill
+						width={25}
+						height={25}
+						iconColor={tintcolor}
+						style_container={{ justifyContent: 'center' }}
+					/>
+						: <SearchStroke
+							width={25}
+							height={25}
+							iconColor={tintcolor}
+							style_container={{ justifyContent: 'center' }}
+						/>
+				)
 
-const NewOrderStack = createStackNavigator(
-	{
-		NewOrder: NewOrder
+			},
+		})
 	},
-	{
-		// initialRouteName: 'Login',
-		headerMode: 'none'
-	}
-)
+	NewOrder: {
+		screen: NewOrder,
+		navigationOptions: ({ navigation }) => ({
+			title: 'NewOrder',
+			header: null,
+			tabBarIcon: ({ focused, tintcolor }) => {
+				return (
+					focused ? <PlusFill
+						width={25}
+						height={25}
+						iconColor={tintcolor}
+						style_container={{ justifyContent: 'center' }}
+					/>
+						: <PlusStroke
+							width={25}
+							height={25}
+							iconColor={tintcolor}
+							style_container={{ justifyContent: 'center' }}
+						/>
+				)
 
-const TransactionStack = createStackNavigator(
-	{
-		Transaction: Transaction
+			},
+		})
 	},
-	{
-		// initialRouteName: 'Login',
-		headerMode: 'none'
-	}
-)
+	Transaction: {
+		screen: Transaction,
+		navigationOptions: ({ navigation }) => ({
+			title: 'Transaction',
+			header: null,
+			tabBarIcon: ({ focused, tintcolor }) => {
+				return (
+					focused ? <TradeFill
+						width={25}
+						height={25}
+						iconColor={tintcolor}
+						style_container={{ justifyContent: 'center' }}
+					/>
+						: <TradeStroke
+							width={25}
+							height={25}
+							iconColor={tintcolor}
+							style_container={{ justifyContent: 'center' }}
+						/>
+				)
 
-const MainStack = createMaterialTopTabNavigator(
-	{
-		HomeStack: HomeStack,
-		SearchStack: SearchStack,
-		NewOrderStack: NewOrderStack,
-		TransactionStack: TransactionStack,
-		ProfileStack: ProfileStack,
+			},
+		})
 	},
-	{
-		// initialRouteName: 'Buy',
-		tabBarPosition: 'bottom',
+	Profile: {
+		screen: Profile,
+		navigationOptions: ({ navigation }) => ({
+			title: 'Profile',
+			header: null,
+			tabBarIcon: ({ focused, tintcolor }) => {
+				return (
+					focused ? <UserFill
+						width={25}
+						height={25}
+						iconColor={tintcolor}
+						style_container={{ justifyContent: 'center' }}
+					/>
+						: <UserStroke
+							width={25}
+							height={25}
+							iconColor={tintcolor}
+							style_container={{ justifyContent: 'center' }}
+						/>
+				)
+
+			},
+		})
+	},
+}, {
+	tabBarPosition: 'bottom',
+	initialRouteName: 'NewOrder',
+	activeColor: '#ff0000',
+	inactiveColor: '#000',
+	tabBarOptions: {
+		labelStyle: {
+			fontSize: 10,
+		},
+		style: {
+			backgroundColor: 'blue',
+		},
+		showIcon: true,
+		showLabel: false,
 	}
+}
 )
 
 const AppContainer = createAppContainer(createSwitchNavigator(

@@ -41,12 +41,12 @@ export default class Ads extends React.Component {
     render() {
         const { ads, images, activeSlide } = this.state;
         return <View>
-            <Text>Name: {ads.name}</Text>
+            <Text>Name: {ads.sneaker}</Text>
             <Text>Brand: {ads.brand}</Text>
-            <Text>Type: {ads.type}</Text>
+            {/* <Text>Type: {ads.type}</Text> */}
             <Text>Cond: {ads.cond}/10</Text>
             <Text>Price: {ads.price} VND</Text>
-            <Text style={{textAlign: 'right'}}>{activeSlide + 1}/{images.length}</Text>
+            <Text style={{ textAlign: 'right' }}>{activeSlide + 1}/{images.length}</Text>
             <Carousel
                 ref={(c) => { this._carousel = c; }}
                 data={images}
