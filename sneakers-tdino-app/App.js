@@ -45,30 +45,18 @@ const MainStack = createMaterialTopTabNavigator({
 			header: null,
 			tabBarIcon: ({ focused, tintcolor }) => {
 				return (
-					focused ? <View
-						style={{
-							borderRadius: 50,
-							borderWidth: 2,
-						}}
-					>
-						<SneakerFill
-							width={25}
-							height={25}
+					focused ? <SneakerFill
+							width={43}
+							height={40*24.6/52}
 							iconColor={tintcolor}
-							style_container={{ justifyContent: 'center' }}
-						/></View>
-						: <View
-							style={{
-								borderRadius: 50,
-								borderWidth: 1,
-							}}
-						>
-							<SneakerStroke
-								width={25}
-								height={25}
+							style_container={{ justifyContent: 'center', marginTop: 5, }}
+						/>
+						: <SneakerStroke
+								width={38}
+								height={35*26.9/52}
 								iconColor={tintcolor}
-								style_container={{ justifyContent: 'center' }}
-							/></View>
+								style_container={{ justifyContent: 'center', marginTop: 5, }}
+							/>
 				)
 			},
 		})
@@ -179,7 +167,10 @@ const MainStack = createMaterialTopTabNavigator({
 			fontSize: 10,
 		},
 		style: {
-			backgroundColor: 'blue',
+			backgroundColor: '#fff',
+		},
+		indicatorStyle: {
+			backgroundColor: 'none'
 		},
 		showIcon: true,
 		showLabel: false,
