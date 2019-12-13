@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, FlatList, Dimensions } from 'react-native';
 const deviceWidth = Dimensions.get('screen').width
 import Carousel, { Pagination } from 'react-native-snap-carousel';
+import ImageCarousel from '../../ImageCarousel'
 
 export default class Ads extends React.Component {
     constructor(props) {
@@ -40,31 +41,25 @@ export default class Ads extends React.Component {
 
     render() {
         const { ads, images, activeSlide } = this.state;
-        return <View>
-            <Text>Name: {ads.sneaker}</Text>
-            <Text>Brand: {ads.brand}</Text>
-            {/* <Text>Type: {ads.type}</Text> */}
-            <Text>Cond: {ads.cond}/10</Text>
-            <Text>Price: {ads.price} VND</Text>
-            <Text style={{ textAlign: 'right' }}>{activeSlide + 1}/{images.length}</Text>
-            <Carousel
-                ref={(c) => { this._carousel = c; }}
-                data={images}
-                renderItem={({ item, index }) => (
-                    <Image
-                        style={{
-                            width: deviceWidth,
-                            height: 300,
-                            resizeMode: 'contain',
-                        }}
-                        source={{ uri: item }}
-                    />
-                )}
-                sliderWidth={deviceWidth}
-                itemWidth={deviceWidth}
-                onSnapToItem={(index) => this.setState({ activeSlide: index })}
-            />
-            {this.pagination}
-        </View>
+        // console.log('check')
+        return (
+            <View>
+                <View
+                    style = {{
+                        paddingHorizontal: 10,
+                    }}
+                >
+                <Text>Name: {ads.sneaker}</Text>
+                <Text>Brand: {ads.brand}</Text>
+                {/* <Text>Type: {ads.type}</Text> */}
+                <Text>Cond: {ads.cond}/10</Text>
+                <Text>Price: {ads.price} VND</Text>
+                </View>
+                {/* <Text style={{ textAlign: 'right' }}>{activeSlide + 1}/{images.length}</Text> */}
+                <ImageCarousel
+                    images={images}
+                />
+            </View>
+        )
     }
 }
