@@ -162,6 +162,7 @@ const MainStack = createMaterialTopTabNavigator({
 	initialRouteName: 'Home',
 	activeColor: '#ff0000',
 	inactiveColor: '#000',
+	swipeEnabled: false,
 	tabBarOptions: {
 		labelStyle: {
 			fontSize: 10,

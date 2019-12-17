@@ -7,59 +7,148 @@ import ImageCarousel from '../../ImageCarousel'
 export default class Ads extends React.Component {
     constructor(props) {
         super(props);
-        const { ads } = props;
+        const { ads, sizes } = props;
         const images = ads.images.split(',');
         this.state = {
             ads,
+            sizes,
             activeSlide: 0,
-            images
+            images,
+            price: '',
+            quantity: '',
+            sizeChosen: '',
+            beforeSize: '',
+            afterSize: '',
+            fromScreen: props.fromScreen,
         }
+        this.onViewableItemsChanged = this.onViewableItemsChanged.bind(this)
     }
 
-    get pagination() {
-        const { images, activeSlide } = this.state;
-        return (
-            <Pagination
-                dotsLength={images.length}
-                activeDotIndex={activeSlide}
-                containerStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.75)' }}
-                dotStyle={{
-                    width: 10,
-                    height: 10,
-                    borderRadius: 5,
-                    marginHorizontal: 8,
-                    backgroundColor: 'rgba(255, 255, 255, 0.92)'
-                }}
-                inactiveDotStyle={{
-                    // Define styles for inactive dots here
-                }}
-                inactiveDotOpacity={0.4}
-                inactiveDotScale={0.6}
-            />
-        );
+    onViewableItemsChanged = ({viewableItems}) => {
+        const { sizes } = this.state
+        console.log('hello', viewableItems[0].item)
+        // const { item, } = viewableItems[0]
+        // const { price, quantity, value } = item
+        // this.setState({
+        //     price,
+        //     quantity,
+        //     sizeChosen: value,
+        //     // beforeSize: index - 1 < 0 ? '' : sizes[index - 1].value,
+        //     // afterSize: index + 1 === sizes.length ? '' : sizes[index + 1].value,
+        // })
     }
+
+
 
     render() {
-        const { ads, images, activeSlide } = this.state;
-        // console.log('check')
+        const {
+            ads,
+            images,
+            price,
+            quantity,
+            sizeChosen,
+            fromScreen,
+            beforeSize,
+            afterSize,  
+            sizes
+        } = this.state;
+
         return (
-            <View>
+            <View
+                style={{
+                    marginVertical: 15,
+                }}
+            >
                 <View
-                    style = {{
-                        paddingHorizontal: 10,
+                    style={{
+                        padding: 10,
                     }}
                 >
-                <Text>Name: {ads.sneaker}</Text>
-                <Text>Brand: {ads.brand}</Text>
-                {/* <Text>Type: {ads.type}</Text> */}
-                <Text>Cond: {ads.cond}/10</Text>
-                <Text>Price: {ads.price} VND</Text>
+                    <Text>Username</Text>
                 </View>
-                {/* <Text style={{ textAlign: 'right' }}>{activeSlide + 1}/{images.length}</Text> */}
+
                 <ImageCarousel
                     images={images}
                 />
-            </View>
+
+                <View
+                    style={{
+                        padding: 10,
+                    }}
+                >
+                    <Text>Name: {ads.brand} {ads.sneaker}</Text>
+                    <Text>Cond: {ads.cond}/10</Text>
+                    <View
+                        style={{
+                            flexDirection: 'row',
+                            alignItems: 'baseline',
+                        }}
+                    >
+                        <Text>Size: {ads.sizeType} </Text>
+                        <View
+                            style={{
+                                flexDirection: 'row',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <Text
+                                style={{
+                                    opacity: 0.7,
+                                    textAlign: 'center',
+                                    paddingHorizontal: 5,
+                                }}
+                            >{beforeSize}</Text>
+                            <View
+                                style={{
+                                    width: 40,
+                                    borderColor: 'red',
+                                    borderBottomWidth: 1,
+                                }}
+                            >
+                                {
+                                    sizes.length > 1 ?
+                                        <FlatList
+                                            showsHorizontalScrollIndicator={false}
+                                            horizontal={true}
+                                            pagingEnabled={true}
+                                            data={ads.size}
+                                            renderItem={({ item, index }) => {
+                                                return (
+                                                    <Text
+                                                        style={{
+                                                            width: 40,
+                                                            textAlign: 'center',
+                                                            fontWeight: '600',
+                                                            fontSize: 18,
+                                                        }}
+                                                    >{item.value}</Text>
+                                                )
+                                            }}
+                                            keyExtractor={index => index.toString()}
+                                            // extraData={selected}
+                                            onViewableItemsChanged={this.onViewableItemsChanged}
+                                        />
+                                        : <Text
+                                            style={{
+                                                width: 40,
+                                                textAlign: 'center',
+                                                fontWeight: '600',
+                                                fontSize: 18,
+                                            }}>{sizes[0].value}</Text>
+                                }
+
+                            </View>
+                            <Text
+                                style={{
+                                    opacity: 0.7,
+                                    textAlign: 'center',
+                                    paddingHorizontal: 5,
+                                }}
+                            >{afterSize}</Text>
+                        </View>
+                    </View>
+                </View>
+            </View >
         )
     }
 }
