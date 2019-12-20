@@ -18,22 +18,18 @@ export default class Buy extends React.Component {
                     size: [
                         {
                             value: 42,
-                            quantity: 3,
                             price: "11500000",
                         },
                         {
                             value: 43,
-                            quantity: 2,
                             price: "21600000",
                         },
                         {
                             value: 44,
-                            quantity: 3,
                             price: "31700000",
                         },
                         {
                             value: 45,
-                            quantity: 3,
                             price: "41800000",
                         },
                     ]
@@ -50,7 +46,6 @@ export default class Buy extends React.Component {
                     size: [
                         {
                             value: 9,
-                            quantity: 1,
                             price: "33300000",
                         }
                     ]
