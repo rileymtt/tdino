@@ -15,6 +15,7 @@ const HomeStack = createMaterialTopTabNavigator(
 	{
 		initialRouteName: 'Buy',
 		swipeEnabled: false,
+		lazy: true,
 	}
 )
 

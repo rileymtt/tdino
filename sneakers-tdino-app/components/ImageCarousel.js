@@ -31,7 +31,7 @@ export default class ImageCarousel extends React.Component {
     }
 
     render() {
-        console.log('render');
+        // console.log('render');
         const { images, page } = this.state
         // console.log(this.state)
         return (
@@ -54,9 +54,8 @@ export default class ImageCarousel extends React.Component {
                     // extraData={selected}
                     onViewableItemsChanged={this.onViewableItemsChanged}
                 />
-                {
-                    //background for paging
-                }
+
+                {/*background for paging*/}
                  <View
                     style={{
                         backgroundColor: '#000',
@@ -76,9 +75,9 @@ export default class ImageCarousel extends React.Component {
                         }}
                     >{page}/{images.length}</Text>
                 </View>
-                {
-                    //paging
-                }
+                {/*background for paging*/}
+
+                {/*paging*/}
                 <View
                     style={{
                         // backgroundColor: '#000',
@@ -96,6 +95,9 @@ export default class ImageCarousel extends React.Component {
                         }}
                     >{page}/{images.length}</Text>
                 </View>
+                {/*paging*/}
+
+                
             </SafeAreaView>
         );
     }

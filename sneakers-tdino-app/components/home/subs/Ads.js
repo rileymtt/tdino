@@ -30,11 +30,10 @@ export default class Ads extends React.Component {
             fromScreen,
             sizes
         } = this.state;
-
         return (
             <View
                 style={{
-                    marginVertical: 15,
+                    marginVertical: 10,
                 }}
             >
                 <View
@@ -54,62 +53,115 @@ export default class Ads extends React.Component {
                         padding: 10,
                     }}
                 >
-                    <View
-                        style={{
-                            backgroundColor: '#b5b5b5',
-                            borderRadius: 8,
-                            justifyContent: 'center'
-                        }}
-                    >
-                        <Text>{ads.brand} {ads.sneaker}</Text>
-                        <Text>{ads.cond}/10</Text>
-                    </View>
 
-                    <View
+                    <Text
                         style={{
+                            fontSize: 22,
+                            textAlign: 'center',
+                            fontWeight: '700',
+                            marginVertical: 5,
                         }}
-                    >
-                        <Text>Price: {price}</Text>
-                        <Text>Size: {ads.sizeType} </Text>
+                    >{ads.brand} {ads.sneaker}</Text>
+
+                    <Text
+                        style={{
+                            fontSize: 14,
+                            color: '#b5b5b5',
+                            textAlign: 'center',
+                            marginBottom: 5,
+                        }}
+                    >Condition: {ads.cond}</Text>
+
+                    <Text
+                        style={{
+                            fontSize: 25,
+                            textAlign: 'center',
+                            fontWeight: '600',
+                            marginVertical: 5,
+                            color: fromScreen === 'buy' ? '#09A05D' : '#FF5A5F',
+                        }}
+                    >{price} {ads.currency}</Text>
+
+                    <View>
+                        <View
+                            style={{
+                                flexDirection: 'row',
+                                justifyContent: 'space-between',
+                                alignItems: 'baseline'
+                            }}
+                        >
+                            <Text
+                                style={{
+                                    fontSize: 18,
+                                }}
+                            >Available Sizes: {ads.sizeType} </Text>
+                            <TouchableOpacity
+                                style={{
+                                    padding: 5,
+                                    borderColor: '#000',
+                                    borderWidth: 0.8,
+                                    borderRadius: 6,
+                                }}
+
+                            >
+                                <Text
+                                    style={{
+                                        fontSize: 12,
+                                        color: '#000',
+                                    }}
+                                >Size chart</Text>
+                            </TouchableOpacity>
+                        </View>
+
+
                         <FlatList
                             showsHorizontalScrollIndicator={false}
                             horizontal={true}
+                            // scrollEnabled={false}
                             pagingEnabled={true}
                             data={sizes}
                             renderItem={({ item, index }) => {
-                                console.log(sizeChosen, sizeChosen === item.value)
                                 return (
                                     <TouchableOpacity
                                         style={{
-                                            width: 30,
-                                            height: 30,
-                                            padding: 5,
+                                            // width: 30,
+                                            // height: 30,
+                                            padding: 10,
                                             borderWidth: 1,
                                             borderRadius: 6,
                                             borderColor: sizeChosen == item.value ? '#000' : '#b5b5b5',
                                             marginRight: 10,
-                                            flexDirection: 'row',
+                                            // flexDirection: 'row',
+                                            // marginTop: 10,
+                                            backgroundColor: sizeChosen == item.value ? '#000' : 'transparent'
                                         }}
                                         onPress={() => this.setState({ sizeChosen: item.value, price: item.price })}
                                     >
                                         <Text
                                             style={{
-                                                color: sizeChosen == item.value ? '#000' : '#b5b5b5',
-                                                textAlign: 'center',
-                                                alignSelf: 'center',
-                                                justifyContent: 'center',
+                                                color: sizeChosen == item.value ? '#fff' : '#b5b5b5',
+                                                // textAlign: 'center',
+                                                // alignSelf: 'center',
+                                                // justifyContent: 'center',
                                             }}
                                         >{item.value}</Text>
                                     </TouchableOpacity>
                                 )
                             }}
-                            keyExtractor={index => index.toString()}
+                            keyExtractor={({ item, index }) => index}
                             // extraData={selected}
-                            onViewableItemsChanged={this.onViewableItemsChanged}
+                            // onViewableItemsChanged={this.onViewableItemsChanged}
+                            style={{
+                                marginTop: 10,
+                                // flexDirection: 'row',
+                                // flexWrap: 'wrap',
+                            }}
                         />
                     </View>
+                    
                 </View>
-            </View >
+            </View>
+
         )
     }
 }

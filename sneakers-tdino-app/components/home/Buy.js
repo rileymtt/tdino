@@ -12,9 +12,10 @@ export default class Buy extends React.Component {
                     sneaker: "AF1 Para para",
                     brand: "Nike",
                     images: "http://sellervn.vn/upload/baiviet/peaceminusonenikeairforce1storelist1-8873.jpg"
-                    +",https://i2.wp.com/snkrvn.com/wp-content/uploads/2019/11/G-Dragon-PEACEMINUSONE-x-Nike-Air-Force-1-22Para-Noise22-3.jpg?resize=960%2C640&ssl=1",
-                    cond: "10",
+                        + ",https://i2.wp.com/snkrvn.com/wp-content/uploads/2019/11/G-Dragon-PEACEMINUSONE-x-Nike-Air-Force-1-22Para-Noise22-3.jpg?resize=960%2C640&ssl=1",
+                    cond: "Full Box",
                     sizeType: 'UK',
+                    currency: 'VND',
                     size: [
                         {
                             value: 42,
@@ -32,17 +33,57 @@ export default class Buy extends React.Component {
                             value: 45,
                             price: "41800000",
                         },
+                        {
+                            value: 46,
+                            price: "41800000",
+                        },
+                        {
+                            value: 47,
+                            price: "41800000",
+                        },
+                        {
+                            value: 48,
+                            price: "41800000",
+                        },
+                        {
+                            value: 49,
+                            price: "41800000",
+                        },
+                        {
+                            value: 50,
+                            price: "41800000",
+                        },
+                        {
+                            value: 51,
+                            price: "41800000",
+                        },
+                        {
+                            value: 52,
+                            price: "41800000",
+                        },
+                        {
+                            value: 53,
+                            price: "41800000",
+                        },
+                        {
+                            value: 54,
+                            price: "41800000",
+                        },
+                        {
+                            value: 55,
+                            price: "41800000",
+                        },
                     ]
                 },
                 {
                     id: "2",
                     sneaker: "AF2 Baca baca",
                     brand: "Nike",
-                    cond: "10",
-                    
+                    cond: "9.5",
                     images: "https://wwws.dior.com/couture/ecommerce/media/catalog/product/cache/1/cover_image_mobile_2/715x773/17f82f742ffe127f42dca9de82fb58b1/1/e/1544604343_KCK217TLK_S11X_E02_GHC.jpg"
-                    +",https://cdn.shopify.com/s/files/1/1903/5555/products/vader_smooth_pu_jams_fabric_black_silver_002_530x@2x.jpg?v=1563552741",
+                        + ",https://cdn.shopify.com/s/files/1/1903/5555/products/vader_smooth_pu_jams_fabric_black_silver_002_530x@2x.jpg?v=1563552741",
                     sizeType: 'US',
+                    currency: 'VND',
                     size: [
                         {
                             value: 9,
@@ -65,7 +106,6 @@ export default class Buy extends React.Component {
 
     render() {
         const { ads } = this.state;
-        console.log(ads[1].size.length)
         return (
             <View
                 style={{
@@ -75,10 +115,14 @@ export default class Buy extends React.Component {
             >
                 <FlatList
                     data={ads}
-                    renderItem={({ item }) => <Ads ads={item} sizes={item.size}/>}
+                    renderItem={({ item }) =>
+                        <Ads
+                            ads={item}
+                            sizes={item.size}
+                            fromScreen={'buy'}
+                        />}
                     keyExtractor={item => item.id.toString()}
                     extraData={this.state}
-                    fromScreen = {'buy'}
                 />
             </View>
         )

@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView, Platform } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, Platform, StatusBar } from 'react-native';
 import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import Login from './screens/login/Login';
@@ -163,6 +163,7 @@ const MainStack = createMaterialTopTabNavigator({
 	activeColor: '#ff0000',
 	inactiveColor: '#000',
 	swipeEnabled: false,
+	lazy: true,
 	tabBarOptions: {
 		labelStyle: {
 			fontSize: 10,
@@ -181,7 +182,7 @@ const MainStack = createMaterialTopTabNavigator({
 
 const AppContainer = createAppContainer(createSwitchNavigator(
 	{
-		Login: LoginStack,
+		// Login: LoginStack,
 		Main: MainStack
 	},
 	{
@@ -198,6 +199,7 @@ export default class App extends React.Component {
 				paddingTop: Platform.OS === 'android' ? 25 : 0,
 			}}
 		>
+			<StatusBar barStyle="dark-content" />
 			<AppContainer />
 		</SafeAreaView>
 	}
